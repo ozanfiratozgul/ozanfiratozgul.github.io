@@ -1,0 +1,162 @@
+body {
+    color: #000;
+    font-family: "Arial",Verdana,sans-serif;
+    font-weight: normal;
+    background-color: #fff;
+}
+
+input:focus {outline:none !important;}
+  
+a {
+  color:#07C;
+  text-decoration:none;
+  transition: color .2s ease;
+}
+  
+a:hover {
+  text-decoration: underline;
+}
+
+.container{
+    width: 600px;
+    font-size: 13px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: left;
+    overflow: hidden;
+    margin-bottom: .5em;
+    line-height: 1.5em;
+    padding-bottom:2em
+}
+  
+name {
+    font-size: 1.6em;
+    line-height:1em;
+}
+  
+#intro-text {
+  margin-top: 3em;
+  margin-bottom:2em;  
+  text-align: left;
+  display: block;
+}
+
+.profile_pic img{
+    width: 152px;
+    border-radius: 1%;
+    margin: 0px 0px 0px 10px;
+    float: right;
+    height: auto;
+    padding: 0px;
+}
+
+.sections {
+  /*overflow: hidden;*/
+  padding-left: 0em;
+  padding-right: 0em;
+  margin-top: 1em;
+}
+
+.subsection {
+  color: #000;
+  font-size: 1.1em;
+  font-weight:bold;
+}
+
+.subsection a {
+  color: #000;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.subsection a:hover {
+  color: #000;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.breadcrumb {
+  /*margin-bottom: 2em;*/
+  /* text-transform: uppercase; */
+  /* padding-bottom: 0.6em; */
+  padding-top: 1.5em;
+  font-size: 0.9em;
+  /* border-bottom: 1px dotted #eee; */
+}
+
+.breadcrumb a {
+  /*font-weight: 700;
+  color: #fff;*/
+  /*line-height: 1.5em;*/
+  color: #bbb;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.breadcrumb a:hover {
+  color: #ca1e00;
+}
+
+.breadcrumb h1
+{
+    font-weight:normal;
+    display:inline;
+    font-size: 1.1em;
+}
+
+.topnav
+{
+    display: inline;
+    /*text-align:right;*/
+    float:right;
+}
+
+.topnav a {
+    color: #bbb;
+}
+
+nav {
+    margin:0 auto;
+}
+
+nav ul
+{
+    margin-top:0;
+    margin-bottom:0;
+    margin-right:0;
+    padding-right:0;
+    padding-left:0;
+}
+
+nav ul li {
+  display: inline-block;
+  /*margin-left: 0.5em;
+  margin-right: 0.5em;*/
+  padding-left:0.5em;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+blockquote {
+  padding: 0px 30px 0px 30px;
+  font-size: 90%;
+  color:#666;
+}
+
+	
+@media screen and (max-width:700px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width:520px) {
+
+.container {
+    width: 90%;
+  }
+
+.profile_pic img {
+    /*display: none;*/
+}
+}
