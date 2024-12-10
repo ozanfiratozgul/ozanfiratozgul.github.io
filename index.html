@@ -12,7 +12,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,6 +51,7 @@
             width: 140px;
             height: 140px;
             object-fit: cover;
+            margin-right: 20px; /* Added space between photo and text */
         }
 
         .intro-left {
@@ -115,6 +116,12 @@
             .profile_pic img {
                 width: 120px; /* Reduce size on smaller screens */
                 height: 120px;
+                margin-right: 0; /* Remove space in stacked layout */
+                margin-bottom: 15px; /* Add space between photo and text */
+            }
+
+            .intro-left {
+                text-align: center;
             }
 
             .intro-right {
