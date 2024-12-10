@@ -32,22 +32,18 @@
             position: relative;
         }
 
-        .icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-        }
-
         header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 15px;
             border-radius: 8px;
             padding: 20px;
-            gap: 20px;
-            flex-wrap: wrap; /* Ensure stacking on smaller screens */
+            background: url('9340015.png') no-repeat center center; /* Add logo as background */
+            background-size: 150px; /* Adjust size of the logo */
+            background-blend-mode: lighten; /* Make the background blend nicely */
+            background-color: rgba(255, 255, 255, 0.9); /* Add a slightly faded white overlay */
+            position: relative;
         }
 
         .profile_pic img {
@@ -55,20 +51,13 @@
             width: 140px;
             height: 140px;
             object-fit: cover;
-            margin: auto;
         }
 
         .intro-left {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            flex: 1; /* Ensure responsive resizing */
-        }
-
-        .intro-right {
-            flex: 2; /* Ensure responsive resizing */
-            font-size: 1.1em; /* Slightly larger text for readability */
-            line-height: 1.8; /* Better spacing for readability */
+            flex: 1;
         }
 
         h1 {
@@ -88,6 +77,12 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        .intro-right {
+            flex: 2;
+            font-size: 1.1em;
+            line-height: 1.8;
         }
 
         .sections h2 {
@@ -113,22 +108,18 @@
         /* Responsive Design for Smaller Screens */
         @media (max-width: 768px) {
             header {
-                flex-direction: column; /* Stack the photo and text vertically */
-                text-align: center; /* Center-align text for better presentation */
-            }
-
-            .intro-left {
-                align-items: center;
-            }
-
-            .intro-right {
-                margin-top: 15px; /* Add spacing between photo and text */
+                flex-direction: column; /* Stack photo and text */
                 text-align: center;
             }
 
             .profile_pic img {
-                width: 120px; /* Reduce photo size on smaller screens */
+                width: 120px; /* Reduce size on smaller screens */
                 height: 120px;
+            }
+
+            .intro-right {
+                text-align: center;
+                margin-top: 15px;
             }
         }
     </style>
@@ -136,81 +127,80 @@
 
 <body>
 <div class="container">
-    <img src="9340015.png" alt="Icon" class="icon">
-    <header>
-        <div class="profile_pic">
-            <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
-        </div>
-        <div class="intro-left">
-            <h1>Ozan Özgül</h1>
-            <p>Doctoral Researcher</p>
-            <p>Maastricht University</p>
-            <p>Maastricht, Netherlands</p>
-            <p>
-                <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
-                <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
-                <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
-            </p>
-        </div>
-        <div class="intro-right">
-            <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
-                research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.
-            </p>
-            <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
-            <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
-        </div>
-    </header>
-
-    <div class="sections">
-        <h2 id="education"><strong>Education</strong></h2>
-        <ul class="bullet">
-            <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
-            <li>MSc., Biomedical Engineering, KU Leuven (2015)</li>
-            <li>MSc., Electrical and Electronics Engineering, TOBB ET&Uuml; (2018)</li>
-            <li>PhD., Health, Medicine and Life Sciences, Maastricht University (2024)</li>
-        </ul>
-
-        <h2 id="experience"><strong>Professional Experience</strong></h2>
-        <ul class="bullet">
-            <li>Research Assistant, Computational Biology and Machine Learning Lab, TOBB ETÜ (2017-Present)</li>
-            <li>Data Scientist, STM Big Data Group (2017-2020)</li>
-            <li>Data Science and Statistics Instructor, STM Academy (2018-2020)</li>
-            <li>Research Assistant, Maastricht University (2020-Present)</li>
-        </ul>
-
-        <h2 id="papers"><strong>Papers</strong></h2>
-        <ul class="bullet">
-            <li><strong>High-density and high-coverage composite atrial activation maps: an in-silico validation study</strong><br />
-            <u>O Özgül</u>, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
-            IEEE Transactions on Biomedical Engineering (2024) [<a href="https://ieeexplore.ieee.org/abstract/document/10623671" target="_self">link</a>]</li>
-
-            <li><strong>Selecting repetitive focal and rotational activation patterns with the highest probability of being a source of atrial fibrillation</strong><br />
-            <u>BJM Hermans</u><sup>†</sup>, <u>O Özgül</u><sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
-            Journal of Molecular and Cellular Cardiology Plus 7, 100064 (2024) [<a href="https://www.sciencedirect.com/science/article/pii/S2772976124000047" target="_self">link</a>]</li>
-
-            <li><strong>High-density and high coverage composite mapping of repetitive atrial activation patterns</strong><br />
-            <u>O Özgül</u>, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
-            Computers in Biology and Medicine 159, 106920 (2023)</li>
-
-            <li><strong>A Convolutional Deep Clustering Framework for Gene Expression Time Series</strong><br />
-            <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
-            IEEE/ACM Transactions on Computational Biology and Bioinformatics (2020) [<a href="https://ieeexplore.ieee.org/abstract/document/9075435" target="_self">link</a>]</li>
-
-            <li><strong>Drug response prediction by ensemble learning and drug-induced gene expression signatures</strong><br />
-            Mehmet Tan, <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, Işıksu Ekşioğlu, and Suna Sabuncuoğlu<br />
-            Genomics (2019) [<a href="https://www.sciencedirect.com/science/article/pii/S0888754318302416" target="_self">link</a>]</li>
-
-            <li><strong>Predicting drug activity by image encoded gene expression profiles</strong><br />
-            <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
-            IEEE Signal Processing and Communications Applications (2018) [<a href="https://ieeexplore.ieee.org/abstract/document/8404799" target="_self">link</a>]<br />
-            <strong style="color: red;">Second Best Paper Award by IEEE EMBS.</strong></li>
-        </ul>
-
-        <h2 id="blogs"><strong>Blogs</strong></h2>
-        <ul class="bullet">
-            <li>DENEME</li>
-        </ul>
+<header>
+    <div class="profile_pic">
+        <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo">
     </div>
+    <div class="intro-left">
+        <h1>Ozan Özgül</h1>
+        <p>Doctoral Researcher</p>
+        <p>Maastricht University</p>
+        <p>Maastricht, Netherlands</p>
+        <p>
+            <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
+            <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+        </p>
+    </div>
+    <div class="intro-right">
+        <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
+            research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.
+        </p>
+        <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
+        <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
+    </div>
+</header>
+
+<div class="sections">
+    <h2 id="education"><strong>Education</strong></h2>
+    <ul class="bullet">
+        <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
+        <li>MSc., Biomedical Engineering, KU Leuven (2015)</li>
+        <li>MSc., Electrical and Electronics Engineering, TOBB ET&Uuml; (2018)</li>
+        <li>PhD., Health, Medicine and Life Sciences, Maastricht University (2024)</li>
+    </ul>
+
+    <h2 id="experience"><strong>Professional Experience</strong></h2>
+    <ul class="bullet">
+        <li>Research Assistant, Computational Biology and Machine Learning Lab, TOBB ETÜ (2017-Present)</li>
+        <li>Data Scientist, STM Big Data Group (2017-2020)</li>
+        <li>Data Science and Statistics Instructor, STM Academy (2018-2020)</li>
+        <li>Research Assistant, Maastricht University (2020-Present)</li>
+    </ul>
+
+    <h2 id="papers"><strong>Papers</strong></h2>
+    <ul class="bullet">
+        <li><strong>High-density and high-coverage composite atrial activation maps: an in-silico validation study</strong><br />
+        <u>O Özgül</u>, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
+        IEEE Transactions on Biomedical Engineering (2024) [<a href="https://ieeexplore.ieee.org/abstract/document/10623671" target="_self">link</a>]</li>
+
+        <li><strong>Selecting repetitive focal and rotational activation patterns with the highest probability of being a source of atrial fibrillation</strong><br />
+        <u>BJM Hermans</u><sup>†</sup>, <u>O Özgül</u><sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
+        Journal of Molecular and Cellular Cardiology Plus 7, 100064 (2024) [<a href="https://www.sciencedirect.com/science/article/pii/S2772976124000047" target="_self">link</a>]</li>
+
+        <li><strong>High-density and high coverage composite mapping of repetitive atrial activation patterns</strong><br />
+        <u>O Özgül</u>, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
+        Computers in Biology and Medicine 159, 106920 (2023)</li>
+
+        <li><strong>A Convolutional Deep Clustering Framework for Gene Expression Time Series</strong><br />
+        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
+        IEEE/ACM Transactions on Computational Biology and Bioinformatics (2020) [<a href="https://ieeexplore.ieee.org/abstract/document/9075435" target="_self">link</a>]</li>
+
+        <li><strong>Drug response prediction by ensemble learning and drug-induced gene expression signatures</strong><br />
+        Mehmet Tan, <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, Işıksu Ekşioğlu, and Suna Sabuncuoğlu<br />
+        Genomics (2019) [<a href="https://www.sciencedirect.com/science/article/pii/S0888754318302416" target="_self">link</a>]</li>
+
+        <li><strong>Predicting drug activity by image encoded gene expression profiles</strong><br />
+        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
+        IEEE Signal Processing and Communications Applications (2018) [<a href="https://ieeexplore.ieee.org/abstract/document/8404799" target="_self">link</a>]<br />
+        <strong style="color: red;">Second Best Paper Award by IEEE EMBS.</strong></li>
+    </ul>
+
+    <h2 id="blogs"><strong>Blogs</strong></h2>
+    <ul class="bullet">
+        <li>DENEME</li>
+    </ul>
+</div>
 </div>
 </body>
 </html>
