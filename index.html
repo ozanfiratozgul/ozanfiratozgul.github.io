@@ -7,181 +7,161 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.png" type="image/png">
     <link href="style.css" type="text/css" rel="stylesheet">
+
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.5;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
             color: #333;
+            background-color: #f9f9f9;
         }
 
-        /* Top navigation bar */
-        .navbar {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-
-        .navbar a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main container */
         .container {
-            display: flex;
-            flex-direction: row;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Narrowed from 90% to 80% */
+            max-width: 900px; /* Reduced max width */
+            margin: auto;
+            overflow: hidden;
+            padding: 10px 15px; /* Reduced padding for tighter layout */
         }
 
-        /* Left sidebar */
-        .sidebar {
-            width: 25%;
-            padding: 20px;
-            border-right: 1px solid #ccc;
+        header {
+            text-align: center;
+            margin-bottom: 15px; /* Reduced spacing */
         }
 
         .profile_pic img {
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 120px; /* Reduced size */
+            height: 120px;
             object-fit: cover;
-            display: block;
-            margin: 0 auto 15px;
-        }
-
-        .sidebar h1 {
-            font-size: 1.8em;
-            text-align: center;
             margin-bottom: 10px;
         }
 
-        .sidebar p {
-            text-align: center;
-            margin-bottom: 5px;
+        h1 {
+            color: #333;
+            font-size: 2em; /* Reduced font size */
+            margin-bottom: 10px;
         }
 
-        .sidebar a {
-            display: block;
-            text-align: center;
+        a {
             color: #007bff;
             text-decoration: none;
-            margin-bottom: 10px;
         }
 
-        .sidebar a:hover {
+        a:hover {
             text-decoration: underline;
         }
 
-        /* Right content area */
-        .content {
-            width: 75%;
-            padding: 20px;
-        }
-
-        .content h2 {
+        .sections h2 {
             color: #0056b3;
             border-bottom: 2px solid #ccc;
             padding-bottom: 5px;
-            margin-top: 20px;
+            margin-top: 15px; /* Reduced spacing */
         }
 
-        .content p {
-            margin-bottom: 15px;
-        }
-
-        .content ul {
+        ul.bullet {
             list-style-type: square;
             padding-left: 20px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            background: #333;
-            color: white;
-            margin-top: 20px;
+        ul.bullet li {
+            margin-bottom: 8px; /* Reduced margin */
         }
 
-        footer a {
-            color: #007bff;
-            text-decoration: none;
+        p {
+            margin-bottom: 12px; /* Reduced spacing */
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .via {
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <div class="navbar">
-        <a href="#research">Research</a>
-        <a href="#blog">Blog</a>
-        <a href="#software">Software</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
+<div class="container">
+<header>
+    <div class="intro">
+        <div id="intro-text">
             <div class="profile_pic">
-                <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül">
+                <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
             </div>
             <h1>Ozan Fırat Özgül</h1>
             <p>Doctoral Researcher</p>
             <p>Maastricht University</p>
             <p>Maastricht, Netherlands</p>
-            <a href="mailto:ozanfiratozgul@mail.com">Email</a>
-            <a href="https://github.com/ozanfiratozgul">GitHub</a>
-            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Google Scholar</a>
-        </div>
-
-        <!-- Content Area -->
-        <div class="content">
-            <h2>About Me</h2>
-            <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.</p>
-            <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
-            <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
-
-            <h2>Education</h2>
-            <ul>
-                <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
-                <li>MSc., Biomedical Engineering, KU Leuven (2015)</li>
-                <li>MSc., Electrical and Electronics Engineering, TOBB ET&Uuml; (2018)</li>
-                <li>PhD., Health, Medicine and Life Sciences, Maastricht University (2024)</li>
-            </ul>
-
-            <h2>Professional Experience</h2>
-            <ul>
-                <li>Research Assistant, Computational Biology and Machine Learning Lab, TOBB ETÜ (2017-Present)</li>
-                <li>Data Scientist, STM Big Data Group (2017-2020)</li>
-                <li>Data Science and Statistics Instructor, STM Academy (2018-2020)</li>
-                <li>Research Assistant, Maastricht University (2020-Present)</li>
-            </ul>
+            <p>
+                <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
+                <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+                <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+            </p>
         </div>
     </div>
+</header>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Ozan Fırat Özgül | <a href="https://github.com/ozanfiratozgul">GitHub</a></p>
-    </footer>
+<div class="sections">
+    <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
+        research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.
+    </p>
+    <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
+    <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
+
+    <h2 id="education"><strong>Education</strong></h2>
+    <ul class="bullet">
+        <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
+        <li>MSc., Biomedical Engineering, KU Leuven (2015)</li>
+        <li>MSc., Electrical and Electronics Engineering, TOBB ET&Uuml; (2018)</li>
+        <li>PhD., Health, Medicine and Life Sciences, Maastricht University (2024)</li>
+    </ul>
+
+    <h2 id="experience"><strong>Professional Experience</strong></h2>
+    <ul class="bullet">
+        <li>Research Assistant, Computational Biology and Machine Learning Lab, TOBB ETÜ (2017-Present)</li>
+        <li>Data Scientist, STM Big Data Group (2017-2020)</li>
+        <li>Data Science and Statistics Instructor, STM Academy (2018-2020)</li>
+        <li>Research Assistant, Maastricht University (2020-Present)</li>
+    </ul>
+
+    <h2 id="papers"><strong>Papers</strong></h2>
+    <ul class="bullet">
+        <li><strong>High-density and high-coverage composite atrial activation maps: an in-silico validation study</strong><br />
+        O Özgül, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
+        IEEE Transactions on Biomedical Engineering (2024) [<a href="https://ieeexplore.ieee.org/abstract/document/10623671" target="_self">link</a>]</li>
+
+        <li><strong>Selecting repetitive focal and rotational activation patterns with the highest probability of being a source of atrial fibrillation</strong><br />
+        BJM Hermans<sup>†</sup>, O Özgül<sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
+        Journal of Molecular and Cellular Cardiology Plus 7, 100064 (2024) [<a href="https://www.sciencedirect.com/science/article/pii/S2772976124000047" target="_self">link</a>]</li>
+
+        <li><strong>High-density and high coverage composite mapping of repetitive atrial activation patterns</strong><br />
+        O Özgül, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
+        Computers in Biology and Medicine 159, 106920 (2023)</li>
+
+        <li><strong>A Convolutional Deep Clustering Framework for Gene Expression Time Series</strong><br />
+        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
+        IEEE/ACM Transactions on Computational Biology and Bioinformatics (2020) [<a href="https://ieeexplore.ieee.org/abstract/document/9075435" target="_self">link</a>]</li>
+
+        <li><strong>Drug response prediction by ensemble learning and drug-induced gene expression signatures</strong><br />
+        Mehmet Tan, <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, Işıksu Ekşioğlu, and Suna Sabuncuoğlu<br />
+        Genomics (2019) [<a href="https://www.sciencedirect.com/science/article/pii/S0888754318302416" target="_self">link</a>]</li>
+
+        <li><strong>Predicting drug activity by image encoded gene expression profiles</strong><br />
+        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
+        IEEE Signal Processing and Communications Applications (2018) [<a href="https://ieeexplore.ieee.org/abstract/document/8404799" target="_self">link</a>]<br />
+        <strong style="color: red;">Second Best Paper Award by IEEE EMBS.</strong></li>
+    </ul>
+
+    <h2 id="blogs"><strong>Blogs</strong></h2>
+    <ul class="bullet">
+        <li>DENEME</li>
+    </ul>
+</div>
+</div>
 </body>
 </html>
