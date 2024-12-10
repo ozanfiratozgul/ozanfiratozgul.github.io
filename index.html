@@ -29,21 +29,16 @@
             margin: auto;
             overflow: hidden;
             padding: 10px 15px;
-            position: relative;
         }
 
         header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             margin-bottom: 15px;
             border-radius: 8px;
             padding: 20px;
-            background: url('9340015.png') no-repeat center center; /* Add logo as background */
-            background-size: 150px; /* Adjust size of the logo */
-            background-blend-mode: lighten; /* Make the background blend nicely */
-            background-color: rgba(255, 255, 255, 0.9); /* Add a slightly faded white overlay */
-            position: relative;
+            gap: 20px;
+            flex-wrap: wrap; /* Ensure stacking on smaller screens */
         }
 
         .profile_pic img {
@@ -58,6 +53,18 @@
             flex-direction: column;
             align-items: flex-start;
             flex: 1;
+        }
+
+        .intro-right {
+            flex: 2;
+            font-size: 1.1em;
+            line-height: 1.8;
+            position: relative;
+            background: url('9340015.png') no-repeat center center; /* Add logo as background */
+            background-size: 100px; /* Adjust logo size */
+            background-color: rgba(255, 255, 255, 0.9); /* Add slight overlay */
+            border-radius: 8px;
+            padding: 20px; /* Add padding for content */
         }
 
         h1 {
@@ -77,12 +84,6 @@
 
         a:hover {
             text-decoration: underline;
-        }
-
-        .intro-right {
-            flex: 2;
-            font-size: 1.1em;
-            line-height: 1.8;
         }
 
         .sections h2 {
