@@ -12,7 +12,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,16 +29,21 @@
             margin: auto;
             overflow: hidden;
             padding: 10px 15px;
+            position: relative;
         }
 
         header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 15px;
             border-radius: 8px;
             padding: 20px;
-            gap: 20px;
-            flex-wrap: wrap; /* Ensure stacking on smaller screens */
+            background: url('9340015.png') no-repeat center center; /* Add logo as background */
+            background-size: 150px; /* Adjust size of the logo */
+            background-blend-mode: lighten; /* Make the background blend nicely */
+            background-color: rgba(255, 255, 255, 0.9); /* Add a slightly faded white overlay */
+            position: relative;
         }
 
         .profile_pic img {
@@ -53,30 +58,6 @@
             flex-direction: column;
             align-items: flex-start;
             flex: 1;
-        }
-
-        .intro-right {
-            flex: 2;
-            font-size: 1.1em;
-            line-height: 1.8;
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.9); /* Slight overlay for contrast */
-            border-radius: 8px;
-            padding: 20px; /* Add padding for content */
-        }
-
-        .intro-right::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('9340015.png') no-repeat center center;
-            background-size: 150px; /* Adjust size of the logo */
-            opacity: 0.1; /* Make the background image opaque */
-            z-index: -1; /* Ensure the image stays behind the content */
-            border-radius: 8px;
         }
 
         h1 {
@@ -96,6 +77,12 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        .intro-right {
+            flex: 2;
+            font-size: 1.1em;
+            line-height: 1.8;
         }
 
         .sections h2 {
