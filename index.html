@@ -34,20 +34,28 @@
         header {
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Align content to the left */
             margin-bottom: 15px;
         }
 
         .profile_pic img {
             border-radius: 50%;
-            width: 140px; /* Slightly increased size */
+            width: 140px;
             height: 140px;
             object-fit: cover;
-            margin-right: 20px; /* Spacing between photo and text */
         }
 
-        .intro-text {
-            text-align: left; /* Align text to the left */
+        .intro-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid #ccc; /* Added vertical line */
+        }
+
+        .intro-right {
+            margin-left: 20px; /* Added spacing to separate from vertical line */
+            flex-grow: 1;
         }
 
         h1 {
@@ -94,29 +102,32 @@
 <body>
 <div class="container">
 <header>
-    <div class="profile_pic">
-        <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
+    <div class="intro-left">
+        <div class="profile_pic">
+            <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
+        </div>
+        <div>
+            <h1>Ozan Fırat Özgül</h1>
+            <p>Doctoral Researcher</p>
+            <p>Maastricht University</p>
+            <p>Maastricht, Netherlands</p>
+            <p>
+                <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
+                <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+                <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+            </p>
+        </div>
     </div>
-    <div class="intro-text">
-        <h1>Ozan Fırat Özgül</h1>
-        <p>Doctoral Researcher</p>
-        <p>Maastricht University</p>
-        <p>Maastricht, Netherlands</p>
-        <p>
-            <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
-            <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
-            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+    <div class="intro-right">
+        <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
+            research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.
         </p>
+        <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
+        <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
     </div>
 </header>
 
 <div class="sections">
-    <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
-        research focuses on developing advanced biomedical signal processing and machine learning tools to personalize treatment of atrial fibrillation (AF) patients.
-    </p>
-    <p>Before that, I was working as a data scientist in the Big Data Group of <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara).</p>
-    <p>Lately, my interest in blog keeping has increased, and this is the place I plan to materialize my thoughts!</p>
-
     <h2 id="education"><strong>Education</strong></h2>
     <ul class="bullet">
         <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
