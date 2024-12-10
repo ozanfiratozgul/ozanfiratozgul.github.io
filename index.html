@@ -16,7 +16,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
             color: #333;
@@ -24,7 +24,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             max-width: 900px;
             margin: auto;
             overflow: hidden;
@@ -35,10 +35,11 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            background-color: #6495ED; /* Cornflower blue background */
+            background-color: #f2f2f2; /* Light gray background for better balance */
             border-radius: 8px;
             padding: 20px;
-            color: white;
+            gap: 20px;
+            flex-wrap: wrap; /* Ensure stacking on smaller screens */
         }
 
         .profile_pic img {
@@ -46,35 +47,34 @@
             width: 140px;
             height: 140px;
             object-fit: cover;
+            margin: auto;
         }
 
         .intro-left {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin-right: 20px;
-            padding-right: 20px;
-            border-right: 1px solid #ccc; /* Added vertical line */
+            flex: 1; /* Ensure responsive resizing */
         }
 
         .intro-right {
-            margin-left: 20px; /* Added spacing to separate from vertical line */
-            flex-grow: 1;
-            font-size: 1.2em; /* Increased font size for introductory text */
+            flex: 2; /* Ensure responsive resizing */
+            font-size: 1.1em; /* Slightly larger text for readability */
+            line-height: 1.8; /* Better spacing for mobile readability */
         }
 
         h1 {
-            color: white; /* Adjusted to match the background */
+            color: #333;
             font-size: 1.8em;
             margin-bottom: 5px;
         }
 
         p {
-            margin: 3px 0;
+            margin: 5px 0;
         }
 
         a {
-            color: #FFD700; /* Gold color for links */
+            color: #007bff;
             text-decoration: none;
         }
 
@@ -101,27 +101,47 @@
         .via {
             font-weight: bold;
         }
+
+        /* Responsive Design for Smaller Screens */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Stack the photo and text vertically */
+                text-align: center; /* Center-align text for better presentation */
+            }
+
+            .intro-left {
+                align-items: center;
+            }
+
+            .intro-right {
+                margin-top: 15px; /* Add spacing between photo and text */
+                text-align: center;
+            }
+
+            .profile_pic img {
+                width: 120px; /* Reduce photo size on smaller screens */
+                height: 120px;
+            }
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
 <header>
+    <div class="profile_pic">
+        <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
+    </div>
     <div class="intro-left">
-        <div class="profile_pic">
-            <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
-        </div>
-        <div>
-            <h1>Ozan Özgül</h1>
-            <p>Doctoral Researcher</p>
-            <p>Maastricht University</p>
-            <p>Maastricht, Netherlands</p>
-            <p>
-                <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
-                <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
-                <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
-            </p>
-        </div>
+        <h1>Ozan Özgül</h1>
+        <p>Doctoral Researcher</p>
+        <p>Maastricht University</p>
+        <p>Maastricht, Netherlands</p>
+        <p>
+            <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
+            <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+        </p>
     </div>
     <div class="intro-right">
         <p>I am a doctoral researcher at <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a> (Maastricht Uni.) where my
