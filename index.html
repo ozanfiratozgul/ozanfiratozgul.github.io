@@ -24,30 +24,40 @@
         }
 
         .container {
-            width: 80%; /* Narrowed from 90% to 80% */
-            max-width: 900px; /* Reduced max width */
+            width: 80%;
+            max-width: 900px;
             margin: auto;
             overflow: hidden;
-            padding: 10px 15px; /* Reduced padding for tighter layout */
+            padding: 10px 15px;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 15px; /* Reduced spacing */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
         .profile_pic img {
             border-radius: 50%;
-            width: 120px; /* Reduced size */
-            height: 120px;
+            width: 140px; /* Slightly increased size */
+            height: 140px;
             object-fit: cover;
-            margin-bottom: 10px;
+            margin-right: 20px; /* Adjusted spacing */
+        }
+
+        .intro-text {
+            text-align: left;
         }
 
         h1 {
             color: #333;
-            font-size: 2em; /* Reduced font size */
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 3px 0;
         }
 
         a {
@@ -63,7 +73,7 @@
             color: #0056b3;
             border-bottom: 2px solid #ccc;
             padding-bottom: 5px;
-            margin-top: 15px; /* Reduced spacing */
+            margin-top: 15px;
         }
 
         ul.bullet {
@@ -72,11 +82,7 @@
         }
 
         ul.bullet li {
-            margin-bottom: 8px; /* Reduced margin */
-        }
-
-        p {
-            margin-bottom: 12px; /* Reduced spacing */
+            margin-bottom: 8px;
         }
 
         .via {
@@ -88,21 +94,19 @@
 <body>
 <div class="container">
 <header>
-    <div class="intro">
-        <div id="intro-text">
-            <div class="profile_pic">
-                <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
-            </div>
-            <h1>Ozan Fırat Özgül</h1>
-            <p>Doctoral Researcher</p>
-            <p>Maastricht University</p>
-            <p>Maastricht, Netherlands</p>
-            <p>
-                <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
-                <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
-                <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
-            </p>
-        </div>
+    <div class="profile_pic">
+        <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo"/>
+    </div>
+    <div class="intro-text">
+        <h1>Ozan Fırat Özgül</h1>
+        <p>Doctoral Researcher</p>
+        <p>Maastricht University</p>
+        <p>Maastricht, Netherlands</p>
+        <p>
+            <a href="mailto:ozanfiratozgul@mail.com"><span class="via">Email</span></a> ♦ 
+            <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+        </p>
     </div>
 </header>
 
@@ -132,15 +136,15 @@
     <h2 id="papers"><strong>Papers</strong></h2>
     <ul class="bullet">
         <li><strong>High-density and high-coverage composite atrial activation maps: an in-silico validation study</strong><br />
-        O Özgül, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
+        <u>O Özgül</u>, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
         IEEE Transactions on Biomedical Engineering (2024) [<a href="https://ieeexplore.ieee.org/abstract/document/10623671" target="_self">link</a>]</li>
 
         <li><strong>Selecting repetitive focal and rotational activation patterns with the highest probability of being a source of atrial fibrillation</strong><br />
-        BJM Hermans<sup>†</sup>, O Özgül<sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
+        <u>BJM Hermans</u><sup>†</sup>, <u>O Özgül</u><sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
         Journal of Molecular and Cellular Cardiology Plus 7, 100064 (2024) [<a href="https://www.sciencedirect.com/science/article/pii/S2772976124000047" target="_self">link</a>]</li>
 
         <li><strong>High-density and high coverage composite mapping of repetitive atrial activation patterns</strong><br />
-        O Özgül, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
+        <u>O Özgül</u>, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
         Computers in Biology and Medicine 159, 106920 (2023)</li>
 
         <li><strong>A Convolutional Deep Clustering Framework for Gene Expression Time Series</strong><br />
