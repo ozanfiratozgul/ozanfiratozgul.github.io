@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panpsychism: A Curious Perspective on Consciousness</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Blog Post Styling */
+        .blog-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9fafc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .blog-header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .blog-meta {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .blog-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .blog-content h2 {
+            margin-top: 25px;
+            font-size: 1.4em;
+            color: #0056b3;
+        }
+
+        .blog-content p {
+            margin: 15px 0;
+        }
+
+        .blog-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .blog-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .blog-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-home a {
+            font-size: 1em;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-to-home a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile_pic">
+                <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo">
+            </div>
+            <div class="intro-left">
+                <h1>Ozan Özgül</h1>
+                <p>Doctoral Researcher</p>
+                <p>Maastricht University</p>
+                <p>Maastricht, Netherlands</p>
+                <p>
+                    <a href="mailto:ozanfiratozgul@gmail.com"><span class="via">Email</span></a> ♦ 
+                    <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
+                    <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
+                </p>
+            </div>
+        </header>
+
+        <div class="blog-container">
+            <div class="blog-header">
+                <h1>Panpsychism: A Curious Perspective on Consciousness</h1>
+                <p class="blog-meta">By Ozan Fırat Özgül | June 2024</p>
+            </div>
+
+            <div class="blog-content">
+                <p>
+                    The **hard problem of consciousness** asks a profound question: *Why do physical processes in our brain give rise to subjective experiences?* While scientific reductionism attempts to explain consciousness through neuronal activity, **panpsychism** offers an unconventional perspective—suggesting that consciousness might be a fundamental feature of the universe.
+                </p>
+
+                <h2>What is Panpsychism?</h2>
+                <p>
+                    At its core, panpsychism posits that **consciousness is an intrinsic property of all physical matter**. In this view, even seemingly inanimate objects, such as rocks, possess a rudimentary form of consciousness—albeit vastly different from our own.
+                </p>
+
+                <h2>The Consciousness Threshold</h2>
+                <p>
+                    Some proponents argue for a **consciousness threshold**, where complex systems like human brains cross a certain point, allowing for higher-order consciousness. In contrast, simpler systems, like a bug or a rock, might exist below this threshold.
+                </p>
+
+                <h2>Information Integration Theory (IIT)</h2>
+                <p>
+                    IIT refines this view by suggesting that **consciousness scales with the degree of information integration** in a system. According to this theory, a brain integrates and processes more information than a rock, thus enabling richer conscious experiences.
+                </p>
+
+                <h2>The Intuition Problem</h2>
+                <p>
+                    Despite its appeal, panpsychism faces challenges. For example, our intuition resists the idea of a rock being conscious. Does immobility or temperature dictate consciousness? Or are these biases rooted in human perception?
+                </p>
+
+                <h2>Closing Thoughts</h2>
+                <p>
+                    While panpsychism remains speculative, it offers a fascinating lens through which to approach the *hard problem of consciousness*. Whether it leads to answers or not, it pushes the boundaries of how we think about mind, matter, and the universe.
+                </p>
+            </div>
+
+            <div class="blog-footer">
+                <p>For more insights on consciousness and neuroscience, stay tuned for future posts!</p>
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
