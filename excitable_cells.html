@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excitable Grid with Pacemaker Control and Visibility Toggle</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background: #f0f0f0;
+    }
+
+    #mainContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    #controls {
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+
+    #controls button {
+      padding: 8px 16px;
+      margin: 4px;
+      font-size: 16px;
+    }
+
+    #content {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      cursor: crosshair;
+    }
+
+    #pacemakerList {
+      margin-left: 20px;
+      border: 1px solid #888;
+      padding: 8px;
+      background: #fff;
+      max-height: 600px;
+      overflow-y: auto;
+      width: 250px;
+    }
+
+    .pacemaker-entry {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      align-items: center;
+    }
+
+    .pacemaker-entry span {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+
+    .small-btn {
+      font-size: 12px;
+      padding: 2px 6px;
+      margin-left: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mainContainer">
+    <div id="controls">
+      <button id="barrierToggle">🔴 Add Blocks: OFF</button>
+      <button id="repolarToggle">🟫 Add Slow-Repolarization: OFF</button>
+      <button id="pacemakerToggle">💙 Add Pacemakers: OFF</button>
+      <button id="paceModeToggle">⚡ PACE Mode: OFF</button>
+      <button id="visibilityToggle">👁️ Show Only Activation Waves: OFF</button>
+      <button id="resetButton">🔄 Reset Grid</button>
+    </div>
+
+    <div id="content">
+      <canvas id="simCanvas" width="600" height="600"></canvas>
+      <div id="pacemakerList">
+        <strong>Pacemaker Cells:</strong>
+        <div id="pacemakerEntries"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let hideObstacles = false;
+
+    const visibilityToggle = document.getElementById('visibilityToggle');
+    visibilityToggle.addEventListener('click', () => {
+      hideObstacles = !hideObstacles;
+      visibilityToggle.textContent = hideObstacles
+        ? "👁️ Show Only Activation Waves: ON"
+        : "👁️ Show Only Activation Waves: OFF";
+    });
+
+
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+    const size = 20;
+    const rows = canvas.height / size;
+    const cols = canvas.width / size;
+    const fadeDurationDefault = 400;
+    const fadeDurationSlow = 1200;
+    const stepDelay = 50;
+
+    let barrierMode = false;
+    let repolarMode = false;
+    let pacemakerMode = false;
+    let paceActive = false;
+    let isMouseDown = false;
+    let paintAction = null;
+
+    const barrierToggle = document.getElementById('barrierToggle');
+    const repolarToggle = document.getElementById('repolarToggle');
+    const pacemakerToggle = document.getElementById('pacemakerToggle');
+    const paceModeToggle = document.getElementById('paceModeToggle');
+    const pacemakerEntries = document.getElementById('pacemakerEntries');
+
+    let grid = Array.from({ length: rows }, () =>
+      Array.from({ length: cols }, () => ({
+        value: 0,
+        time: 0,
+        barrier: false,
+        repolarizeSlow: false,
+        pacemaker: false,
+        paceRate: 60,
+        lastPaceTime: performance.now()
+      }))
+    );
+
+    barrierToggle.addEventListener('click', () => {
+      barrierMode = !barrierMode;
+      repolarMode = false;
+      pacemakerMode = false;
+      updateButtons();
+    });
+
+    repolarToggle.addEventListener('click', () => {
+      repolarMode = !repolarMode;
+      barrierMode = false;
+      pacemakerMode = false;
+      updateButtons();
+    });
+
+    pacemakerToggle.addEventListener('click', () => {
+      pacemakerMode = !pacemakerMode;
+      barrierMode = false;
+      repolarMode = false;
+      updateButtons();
+    });
+
+    paceModeToggle.addEventListener('click', () => {
+      paceActive = !paceActive;
+      updateButtons();
+    });
+
+    function updateButtons() {
+      barrierToggle.textContent = barrierMode ? "🔴 Paint Barriers: ON" : "🔴 Paint Barriers: OFF";
+      repolarToggle.textContent = repolarMode ? "🟫 Paint Slow-Repol: ON" : "🟫 Paint Slow-Repol: OFF";
+      pacemakerToggle.textContent = pacemakerMode ? "💙 Add Pacemakers: ON" : "💙 Add Pacemakers: OFF";
+      paceModeToggle.textContent = paceActive ? "⚡ PACE Mode: ON" : "⚡ PACE Mode: OFF";
+
+      barrierToggle.style.background = barrierMode ? "#faa" : "#fff";
+      repolarToggle.style.background = repolarMode ? "#ccc" : "#fff";
+      pacemakerToggle.style.background = pacemakerMode ? "#aaf" : "#fff";
+      paceModeToggle.style.background = paceActive ? "#cfc" : "#fff";
+    }
+
+    function paintCell(x, y, overrideAction = null) {
+      const col = Math.floor(x / size);
+      const row = Math.floor(y / size);
+      if (col < 0 || col >= cols || row < 0 || row >= rows) return;
+      const cell = grid[row][col];
+
+      if (barrierMode) {
+        const action = overrideAction || (cell.barrier ? "remove" : "add");
+        if (action === "add") {
+          cell.barrier = true;
+          cell.repolarizeSlow = false;
+          cell.pacemaker = false;
+          cell.value = 0;
+        } else {
+          cell.barrier = false;
+        }
+      } else if (repolarMode) {
+        const action = overrideAction || (cell.repolarizeSlow ? "remove" : "add");
+        if (action === "add") {
+          cell.repolarizeSlow = true;
+          cell.barrier = false;
+          cell.pacemaker = false;
+          cell.value = 0;
+        } else {
+          cell.repolarizeSlow = false;
+        }
+      } else if (pacemakerMode) {
+        const action = overrideAction || (cell.pacemaker ? "remove" : "add");
+        if (action === "add") {
+          cell.pacemaker = true;
+          cell.barrier = false;
+          cell.repolarizeSlow = false;
+          cell.value = 0;
+          cell.paceRate = 60;
+          cell.lastPaceTime = performance.now();
+        } else {
+          cell.pacemaker = false;
+        }
+        updatePacemakerList();
+      } else if (cell.value === 0 && !cell.barrier) {
+        startWave(row, col);
+      }
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const col = Math.floor(x / size);
+      const row = Math.floor(y / size);
+      const cell = grid[row][col];
+
+      if (barrierMode) {
+        paintAction = cell.barrier ? "remove" : "add";
+      } else if (repolarMode) {
+        paintAction = cell.repolarizeSlow ? "remove" : "add";
+      } else if (pacemakerMode) {
+        paintAction = cell.pacemaker ? "remove" : "add";
+      }
+
+      paintCell(x, y, paintAction);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      const rect = canvas.getBoundingClientRect();
+      paintCell(e.clientX - rect.left, e.clientY - rect.top, paintAction);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isMouseDown = false;
+      paintAction = null;
+    });
+
+    function startWave(startRow, startCol) {
+      const visited = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => false)
+      );
+      const queue = [[startRow, startCol]];
+
+      function propagate() {
+        if (queue.length === 0) return;
+        const nextQueue = [];
+
+        for (const [r, c] of queue) {
+          if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
+          const cell = grid[r][c];
+          if (cell.value > 0 || cell.barrier) continue;
+
+          visited[r][c] = true;
+          cell.value = 1;
+          cell.time = performance.now();
+
+          const neighbors = [
+            [r - 1, c], [r + 1, c],
+            [r, c - 1], [r, c + 1],
+            [r - 1, c - 1], [r - 1, c + 1],
+            [r + 1, c - 1], [r + 1, c + 1]
+          ];
+          for (const [nr, nc] of neighbors) {
+            if (
+              nr >= 0 && nr < rows &&
+              nc >= 0 && nc < cols &&
+              !grid[nr][nc].barrier
+            ) {
+              nextQueue.push([nr, nc]);
+            }
+          }
+        }
+
+        queue.splice(0, queue.length, ...nextQueue);
+        if (queue.length > 0) {
+          setTimeout(propagate, stepDelay);
+        }
+      }
+
+      propagate();
+    }
+
+    function update() {
+      const now = performance.now();
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.barrier) {
+            cell.value = 0;
+            continue;
+          }
+          const fadeDuration = cell.repolarizeSlow ? fadeDurationSlow : fadeDurationDefault;
+          const elapsed = now - cell.time;
+          if (cell.value > 0) {
+            cell.value = 1 - Math.min(elapsed / fadeDuration, 1);
+          }
+        }
+      }
+
+      if (paceActive) {
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const cell = grid[r][c];
+            if (cell.pacemaker && !cell.barrier) {
+              const interval = 1000 * (60 / cell.paceRate);
+              if (now - cell.lastPaceTime >= interval) {
+                startWave(r, c);
+                cell.lastPaceTime = now;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+
+          if (cell.barrier && !hideObstacles) {
+            ctx.fillStyle = "red";
+            ctx.fillRect(c * size, r * size, size - 1, size - 1);
+            continue;
+          }
+
+          const val = cell.value;
+          const gray = Math.floor((1 - val) * 255);
+          ctx.fillStyle = `rgb(${gray},${gray},${gray})`;
+          ctx.fillRect(c * size, r * size, size - 1, size - 1);
+
+          if (cell.repolarizeSlow && !hideObstacles) {
+            ctx.strokeStyle = "gray";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(c * size + 0.5, r * size + 0.5, size - 2, size - 2);
+          }
+
+          if (cell.pacemaker) {
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(c * size + 0.5, r * size + 0.5, size - 2, size - 2);
+          }
+        }
+      }
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', () => {
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          cell.barrier = false;
+          cell.repolarizeSlow = false;
+          cell.pacemaker = false;
+        }
+      }
+      updatePacemakerList();
+    });
+
+    function updatePacemakerList() {
+      pacemakerEntries.innerHTML = '';
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.pacemaker) {
+            const entry = document.createElement('div');
+            entry.className = 'pacemaker-entry';
+            entry.innerHTML = `
+              <span>(${r},${c}) → ${cell.paceRate} BPM</span>
+              <button class="small-btn" onclick="changeRate(${r},${c},-10)">−</button>
+              <button class="small-btn" onclick="changeRate(${r},${c},10)">+</button>
+            `;
+            pacemakerEntries.appendChild(entry);
+          }
+        }
+      }
+    }
+
+    window.changeRate = function(r, c, delta) {
+      const cell = grid[r][c];
+      cell.paceRate = Math.max(10, Math.min(300, cell.paceRate + delta));
+      updatePacemakerList();
+    };
+
+    updateButtons();
+    updatePacemakerList();
+    loop();
+  </script>
+</body>
+</html>
