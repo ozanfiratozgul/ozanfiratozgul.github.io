@@ -1,274 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ozan Özgül</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link href="style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Cache Control Meta Tags -->
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: #fff;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: auto;
-            overflow: hidden;
-            padding: 10px 15px;
-            position: relative;
-        }
-
-        header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            padding: 20px;
-            background: url('9340015.png') no-repeat center center;
-            background-size: 150px;
-            background-blend-mode: lighten;
-            background-color: rgba(255, 255, 255, 0.9);
-            position: relative;
-        }
-
-        .profile_pic img {
-            border-radius: 50%;
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-
-        .intro-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            flex: 1;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        p {
-            margin: 5px 0;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .intro-right {
-            flex: 2;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-
-        .sections h2 {
-            color: #0056b3;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-            margin-top: 15px;
-        }
-
-        ul.bullet {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        ul.bullet li {
-            margin-bottom: 8px;
-        }
-
-        .news-icon {
-            font-size: 20px;
-            color: #ff0000;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        .via {
-            font-weight: bold;
-        }
-
-        /* Separator Styling */
-        hr.section-divider {
-            border: none;
-            height: 5px;
-            background-color: #007bff;
-            margin: 20px 0;
-        }
-        
-
-        /* Responsive Design for Smaller Screens */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile_pic img {
-                width: 120px;
-                height: 120px;
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .intro-left {
-                text-align: center;
-            }
-
-            .intro-right {
-                text-align: center;
-                margin-top: 15px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Excitable Grid with All Features</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background: #f0f0f0;
+    }
+    #mainContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    #controls {
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #controls button {
+      padding: 8px 16px;
+      margin: 4px;
+      font-size: 16px;
+    }
+    #content {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      cursor: crosshair;
+    }
+    #pacemakerList {
+      margin-left: 20px;
+      border: 1px solid #888;
+      padding: 8px;
+      background: #fff;
+      max-height: 600px;
+      overflow-y: auto;
+      width: 250px;
+    }
+    .pacemaker-entry {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      align-items: center;
+    }
+    .pacemaker-entry span {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+    .small-btn {
+      font-size: 12px;
+      padding: 2px 6px;
+      margin-left: 2px;
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
-<header>
-    <div class="profile_pic">
-        <img src="1669374366018.jpeg" alt="Ozan Fırat Özgül Photo">
+  <div id="mainContainer">
+    <div id="controls">
+      <button id="barrierToggle">🔴 Add Barriers: OFF</button>
+      <button id="repolarToggle">🟫 Add Slow-Repolarization: OFF</button>
+      <button id="slowConductionToggle">🟩 Add Slow-Conduction: OFF</button>
+      <button id="pacemakerToggle">💙 Add Pacemakers: OFF</button>
+      <button id="paceModeToggle">⚡ PACE Mode: OFF</button>
+      <button id="visibilityToggle">👁️ Show Only Activation Waves: OFF</button>
+      <button id="resetButton">🔄 Reset Grid</button>
+      <button id="circleBlockButton">🟠 Add Circular Block</button>
+      <button id="diamondBlockButton">🔷 Add Diamond Block</button>
+
     </div>
-    <div class="intro-left">
-        <h1>Ozan Özgül</h1>
-        <p>Researcher</p>
-        <p>Cardiovascular Research Institute Maastricht</p>
-        <p>Maastricht/Netherlands</p>
-        <p>
-            <a href="mailto:ozanfiratozgul@gmail.com"><span class="via">Email</span></a> ♦ 
-            <a href="https://github.com/ozanfiratozgul">GitHub</a> ♦ 
-            <a href="https://scholar.google.com/citations?user=QaXNAK4AAAAJ&hl=en&oi=ao">Scholar</a>
-        </p>
+    <div id="content">
+      <canvas id="simCanvas" width="600" height="600"></canvas>
+      <div id="pacemakerList">
+        <strong>Pacemaker Cells:</strong>
+        <div id="pacemakerEntries"></div>
+      </div>
     </div>
-    <div class="intro-right">
-        <p>
-            I am a researcher specializing in <strong>cardiovascular data science</strong> at 
-            <a href="https://www.carimmaastricht.nl/" target="_blank" rel="noopener">CARIM</a>, where I focus on developing advanced <strong>biomedical signal processing</strong> and 
-            <strong>machine learning tools</strong> to personalize treatments for patients with <em>atrial fibrillation (AF)</em>. 
-            Previously, I worked as a <strong>data scientist</strong> in the Big Data Group at 
-            <a href="https://www.stm.com.tr/en/" target="_blank" rel="noopener">STM</a> (Ankara). Recently, I have cultivated a passion for sharing knowledge and exploring ideas 
-            through <strong>blogging</strong>, and this platform serves as a space to bring those thoughts to life.
-        </p>
-    </div>
-</header>
+  </div>
 
-<div class="sections">
-    <h2 id="news"><strong>News</strong></h2>
+  <script>
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    const size = 15;
+    const rows = canvas.height / size;
+    const cols = canvas.width / size;
+    const stepDelay = 40;
+    const slowDelay = stepDelay + 70;
+    const fadeDurationDefault = 400;
+    const fadeDurationSlow = 1200;
 
-    <ul class="bullet">
-        <li>
-            <i class="fa fa-bolt news-icon" aria-hidden="true"></i>
-            Check out <strong>FibrillateMe!</strong>, a simple tool to simulate cardiac conduction!
-            <a href="excitable_cells.html" target="_blank" rel="noopener">Try it here</a>.
-        </li>
-    </ul>
+    let barrierMode = false, repolarMode = false, pacemakerMode = false, slowConductionMode = false, paceActive = false;
+    let isMouseDown = false, paintAction = null;
+    let hideObstacles = false;
 
-    
-    <ul class="bullet">
-        <li>
-            <i class="fa fa-heartbeat news-icon" aria-hidden="true"></i>
-            I am excited to share that I will be presenting at the Masterclass on "Computational Approaches for Cardiac Arrhythmias" on Thursday, January 9th, 2025, featuring 
-            Prof. Narayan from Stanford University, a pioneer in the field. 
-            <a href="masterclassAmsterdamUMC.png" target="_blank" rel="noopener">Here is the programme</a>.
-        </li>
-        
-    </ul>
+    const barrierToggle = document.getElementById('barrierToggle');
+    const repolarToggle = document.getElementById('repolarToggle');
+    const slowConductionToggle = document.getElementById('slowConductionToggle');
+    const pacemakerToggle = document.getElementById('pacemakerToggle');
+    const paceModeToggle = document.getElementById('paceModeToggle');
+    const visibilityToggle = document.getElementById('visibilityToggle');
+    const pacemakerEntries = document.getElementById('pacemakerEntries');
+    const resetButton = document.getElementById('resetButton');
 
-    <h2 id="blogs"><strong>Blogs</strong></h2>
-    <ul class="bullet">
-        <li>
-            🔔 My first blog on ablation therapy for atrial fibrillation is out. Read it 
-            <a href="https://personalizeaf.net/a-better-target/" target="_blank" rel="noopener">here</a>!
-        </li>
-        <li>
-            🔔 Repetitiveness as a marker for localized AF drivers is 
-            <a href="https://personalizeaf.net/localized-af-drivers/" target="_blank" rel="noopener">here</a>!
-        </li>
+    let grid = Array.from({ length: rows }, () =>
+      Array.from({ length: cols }, () => ({
+        value: 0, time: 0,
+        barrier: false,
+        repolarizeSlow: false,
+        pacemaker: false,
+        slowConduction: false,
+        paceRate: 60,
+        lastPaceTime: performance.now()
+      }))
+    );
 
-        <!--
+    function updateButtons() {
+      barrierToggle.textContent = barrierMode ? "🔴 Conduction blocks: ON" : "🔴 Conduction blocks: OFF";
+      repolarToggle.textContent = repolarMode ? "🟫 Slow repolarization: ON" : "🟫 Slow repolarization: OFF";
+      slowConductionToggle.textContent = slowConductionMode ? "🟩 Slow conduction: ON" : "🟩 Slow conduction: OFF";
+      pacemakerToggle.textContent = pacemakerMode ? "💙 Add Pacemakers: ON" : "💙 Add Pacemakers: OFF";
+      paceModeToggle.textContent = paceActive ? "⚡ PACE Mode: ON" : "⚡ PACE Mode: OFF";
+    }
 
-        <li>
-            🔔 Read my blog on 
-            <a href="panpsychism_blog.html">Panpsychism: A Curious Perspective on Consciousness</a>. 
-            A thought from my early dive into the philosophy of science.
-        </li>
-    </ul>
--->
+    barrierToggle.onclick = () => { barrierMode = !barrierMode; repolarMode = pacemakerMode = slowConductionMode = false; updateButtons(); };
+    repolarToggle.onclick = () => { repolarMode = !repolarMode; barrierMode = pacemakerMode = slowConductionMode = false; updateButtons(); };
+    slowConductionToggle.onclick = () => { slowConductionMode = !slowConductionMode; barrierMode = repolarMode = pacemakerMode = false; updateButtons(); };
+    pacemakerToggle.onclick = () => { pacemakerMode = !pacemakerMode; barrierMode = repolarMode = slowConductionMode = false; updateButtons(); };
+    paceModeToggle.onclick = () => { paceActive = !paceActive; updateButtons(); };
+    visibilityToggle.onclick = () => {
+      hideObstacles = !hideObstacles;
+      visibilityToggle.textContent = hideObstacles
+        ? "👁️ Show Only Activation Waves: ON"
+        : "👁️ Show Only Activation Waves: OFF";
+    };
+
+    canvas.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      const { row, col } = getMousePos(e);
+      const cell = grid[row][col];
+      if (barrierMode) paintAction = cell.barrier ? "remove" : "add";
+      else if (repolarMode) paintAction = cell.repolarizeSlow ? "remove" : "add";
+      else if (slowConductionMode) paintAction = cell.slowConduction ? "remove" : "add";
+      else if (pacemakerMode) paintAction = cell.pacemaker ? "remove" : "add";
+      paintCell(row, col, paintAction);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      const { row, col } = getMousePos(e);
+      paintCell(row, col, paintAction);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isMouseDown = false;
+      paintAction = null;
+    });
+
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      return { col: Math.floor(x / size), row: Math.floor(y / size) };
+    }
+
+    function paintCell(row, col, overrideAction = null) {
+      if (col < 0 || col >= cols || row < 0 || row >= rows) return;
+      const cell = grid[row][col];
+
+      if (barrierMode) {
+        const action = overrideAction || (cell.barrier ? "remove" : "add");
+        cell.barrier = (action === "add");
+        if (cell.barrier) cell.repolarizeSlow = cell.pacemaker = cell.slowConduction = false;
+      } else if (repolarMode) {
+        const action = overrideAction || (cell.repolarizeSlow ? "remove" : "add");
+        cell.repolarizeSlow = (action === "add");
+        if (cell.repolarizeSlow) cell.barrier = cell.pacemaker = cell.slowConduction = false;
+      } else if (slowConductionMode) {
+        const action = overrideAction || (cell.slowConduction ? "remove" : "add");
+        cell.slowConduction = (action === "add");
+        if (cell.slowConduction) cell.barrier = cell.repolarizeSlow = cell.pacemaker = false;
+      } else if (pacemakerMode) {
+        const action = overrideAction || (cell.pacemaker ? "remove" : "add");
+        cell.pacemaker = (action === "add");
+        if (cell.pacemaker) {
+          cell.barrier = cell.repolarizeSlow = cell.slowConduction = false;
+          cell.paceRate = 60;
+          cell.lastPaceTime = performance.now();
+        }
+        updatePacemakerList();
+      } else if (cell.value === 0 && !cell.barrier) {
+        startWave(row, col);
+      }
+    }
+
+    function startWave(startRow, startCol) {
+      const queue = [[startRow, startCol]];
+      const nextWaves = new Map(); // key: delay, value: list of [r,c]
+
+      function addToWave(delay, r, c) {
+        const key = `${r},${c}`;
+        const cell = grid[r][c];
+        if (!nextWaves.has(delay)) nextWaves.set(delay, []);
+        nextWaves.get(delay).push([r, c]);
+      }
+
+      function propagateWave() {
+        if (queue.length === 0 && nextWaves.size === 0) return;
+
+        const current = queue.splice(0);
+        for (const [r, c] of current) {
+          const cell = grid[r][c];
+          if (cell.barrier) continue;
+          if (cell.value > 0) continue;
+          cell.value = 1;
+          cell.time = performance.now();
+
+          for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+              if (dr === 0 && dc === 0) continue;
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue;
+
+              const neighbor = grid[nr][nc];
+              if (neighbor.barrier || neighbor.value > 0) continue;
+
+              const distance = Math.sqrt(dr * dr + dc * dc); // 1 for straight, ~1.41 for diagonal
+              const baseDelay = neighbor.slowConduction ? slowDelay : stepDelay;
+              const delay = Math.round(baseDelay * distance);
+
+              addToWave(delay, nr, nc);
+            }
+          }
+        }
+
+        for (const [delay, list] of nextWaves) {
+          setTimeout(() => {
+            queue.push(...list);
+            propagateWave();
+          }, delay);
+        }
+        nextWaves.clear();
+      }
+
+      propagateWave();
+    }
 
 
-    
-    <h2 id="education"><strong>Education</strong></h2>
-    <ul class="bullet">
-        <li>BSc., Electrical and Electronics Engineering, Bilkent University (2012)</li>
-        <li>MSc., Biomedical Engineering, KU Leuven (2015)</li>
-        <li>MSc., Electrical and Electronics Engineering, TOBB ET&Uuml; (2018)</li>
-        <li>PhD., Health, Medicine and Life Sciences, Maastricht University (2024)</li>
-    </ul>
+    function update() {
+      const now = performance.now();
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.value > 0) {
+            const duration = cell.repolarizeSlow ? fadeDurationSlow : fadeDurationDefault;
+            const elapsed = now - cell.time;
+            if (elapsed > duration) cell.value = 0;
+            else cell.value = Math.max(0, 1 - elapsed / duration);
+            
+          }
+          if (paceActive && cell.pacemaker && now - cell.lastPaceTime >= 1000 * 60 / cell.paceRate) {
+            startWave(r, c);
+            cell.lastPaceTime = now;
+          }
+        }
+      }
+    }
 
-    <h2 id="experience"><strong>Professional Experience</strong></h2>
-    <ul class="bullet">
-        <li>Research Assistant, Computational Biology and Machine Learning Lab, TOBB ETÜ (2017-Present)</li>
-        <li>Data Scientist, STM Big Data Group (2017-2020)</li>
-        <li>Data Science and Statistics Instructor, STM Academy (2018-2020)</li>
-        <li>Research Assistant, Maastricht University (2020-Present)</li>
-    </ul>
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.barrier && !hideObstacles) ctx.fillStyle = "red";
+          else if (cell.slowConduction && !hideObstacles) ctx.fillStyle = "green";
+          else {
+            const val = Math.floor((1 - cell.value) * 255);
+            ctx.fillStyle = `rgb(${val},${val},255)`;
 
-    <h2 id="papers"><strong>Papers</strong></h2>
-    <ul class="bullet">
-        <li><strong>High-density and high-coverage composite atrial activation maps: an in-silico validation study</strong><br />
-        <u>O Özgül</u>, VG Marques, BJM Hermans, A van Hunnik, S Verheule, ...<br />
-        IEEE Transactions on Biomedical Engineering (2024) [<a href="https://ieeexplore.ieee.org/abstract/document/10623671" target="_self">link</a>]</li>
+          }
+          ctx.fillRect(c * size + 0.5, r * size + 0.5, size - 1, size - 1);
 
-        <li><strong>Selecting repetitive focal and rotational activation patterns with the highest probability of being a source of atrial fibrillation</strong><br />
-        <u>BJM Hermans</u><sup>†</sup>, <u>O Özgül</u><sup>†</sup>, M Wolf, VG Marques, A van Hunnik, S Verheule, ...<br />
-        Journal of Molecular and Cellular Cardiology Plus 7, 100064 (2024) [<a href="https://www.sciencedirect.com/science/article/pii/S2772976124000047" target="_self">link</a>]</li>
+          if (cell.repolarizeSlow && !hideObstacles) {
+            ctx.strokeStyle = "gray";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(c * size + 0.5, r * size + 0.5, size - 2, size - 2);
+          }
+          if (cell.pacemaker) {
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(c * size + 0.5, r * size + 0.5, size - 2, size - 2);
+          }
+        }
+      }
+    }
 
-        <li><strong>High-density and high coverage composite mapping of repetitive atrial activation patterns</strong><br />
-        <u>O Özgül</u>, BJM Hermans, A van Hunnik, S Verheule, U Schotten, P Bonizzi, ...<br />
-        Computers in Biology and Medicine 159, 106920 (2023)</li>
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
 
-        <li><strong>A Convolutional Deep Clustering Framework for Gene Expression Time Series</strong><br />
-        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
-        IEEE/ACM Transactions on Computational Biology and Bioinformatics (2020) [<a href="https://ieeexplore.ieee.org/abstract/document/9075435" target="_self">link</a>]</li>
+    resetButton.onclick = () => {
+      for (let row of grid)
+        for (let cell of row)
+          Object.assign(cell, {
+            barrier: false,
+            repolarizeSlow: false,
+            slowConduction: false,
+            pacemaker: false,
+            value: 0
+          });
+      updatePacemakerList();
+    };
 
-        <li><strong>Drug response prediction by ensemble learning and drug-induced gene expression signatures</strong><br />
-        Mehmet Tan, <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, Işıksu Ekşioğlu, and Suna Sabuncuoğlu<br />
-        Genomics (2019) [<a href="https://www.sciencedirect.com/science/article/pii/S0888754318302416" target="_self">link</a>]</li>
+    circleBlockButton.onclick = () => {
+      const centerX = Math.floor(cols / 2);
+      const centerY = Math.floor(rows / 2);
+      const radius = Math.floor(Math.min(cols, rows) / 2) - 2;
 
-        <li><strong>Predicting drug activity by image encoded gene expression profiles</strong><br />
-        <u>Ozan Fırat &Ouml;zg&uuml;l</u>, Batuhan Bardak, and Mehmet Tan<br />
-        IEEE Signal Processing and Communications Applications (2018) [<a href="https://ieeexplore.ieee.org/abstract/document/8404799" target="_self">link</a>]<br />
-        <strong style="color: red;">Second Best Paper Award by IEEE EMBS.</strong></li>
-    </ul>
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const dist = Math.sqrt((c - centerX) ** 2 + (r - centerY) ** 2);
+          if (dist >= radius - 1 && dist <= radius + 1) {
+            grid[r][c].barrier = true;
+            grid[r][c].repolarizeSlow = grid[r][c].slowConduction = grid[r][c].pacemaker = false;
+          }
+        }
+      }
+    };
+
+    diamondBlockButton.onclick = () => {
+      const centerX = Math.floor(cols / 2);
+      const centerY = Math.floor(rows / 2);
+      const maxDist = Math.floor((Math.min(cols, rows) / 2)) - 2;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const manhattan = Math.abs(r - centerY) + Math.abs(c - centerX);
+          if (manhattan >= maxDist - 1 && manhattan <= maxDist + 1) {
+            grid[r][c].barrier = true;
+            grid[r][c].repolarizeSlow = grid[r][c].slowConduction = grid[r][c].pacemaker = false;
+          }
+        }
+      }
+    };
 
 
-</div>
-</div>
+    function updatePacemakerList() {
+      pacemakerEntries.innerHTML = '';
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = grid[r][c];
+          if (cell.pacemaker) {
+            const div = document.createElement('div');
+            div.className = 'pacemaker-entry';
+            div.innerHTML = `
+              <span>(${r},${c}) → ${cell.paceRate} BPM</span>
+              <button class="small-btn" onclick="changeRate(${r},${c},-10)">−</button>
+              <button class="small-btn" onclick="changeRate(${r},${c},10)">+</button>
+            `;
+            pacemakerEntries.appendChild(div);
+          }
+        }
+      }
+    }
+
+    window.changeRate = function(r, c, delta) {
+      const cell = grid[r][c];
+      cell.paceRate = Math.max(10, Math.min(300, cell.paceRate + delta));
+      updatePacemakerList();
+    };
+
+    updateButtons();
+    updatePacemakerList();
+    loop();
+  </script>
 </body>
 </html>
