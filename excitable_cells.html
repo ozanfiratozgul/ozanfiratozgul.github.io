@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>FibrillateMe!</title>
+  <title>Excitable Grid with All Features</title>
   <style>
     body {
       margin: 0;
@@ -20,11 +20,26 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: 12px;
     }
-    #controls button {
+    fieldset {
+      border: 2px solid #999;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fff;
+      width: 240px;
+    }
+    fieldset legend {
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 0 6px;
+    }
+    fieldset button {
       padding: 8px 16px;
-      margin: 4px;
+      margin: 4px 0;
       font-size: 16px;
+      width: 100%;
+      display: block;
     }
     #content {
       display: flex;
@@ -63,38 +78,50 @@
 </head>
 <body>
 
-  <div style="margin-bottom: 20px; padding: 20px 25px; background: #e0f0ff; border-left: 6px solid #007bff; max-width: 900px; font-size: 1.1em; line-height: 1.7; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-    <strong style="font-size: 1.25em;">⚡ Interactive Simulation of Cardiac Electrical Activity</strong><br><br>
-    👉 Click anywhere on the grid to initiate a pulse.<br>
-    🎨 Watch the wave travel: <em>white → blue → white</em> represents rest → activation → recovery.<br>
-    🚧 Use the buttons to add <span style="color: red;"><strong>conduction blocks</strong></span>, <span style="color: gray;"><strong>slow repolarization cells</strong></span>, and <span style="color: green;"><strong>slow conduction zones</strong></span>.<br>
-    💙 You can also place <strong>pacemakers</strong>, set their rate, and toggle pacing using the "PACE Mode" button.
-  </div>
-  
-
-
-  <div id="mainContainer">
-    <div id="controls">
+<div id="mainContainer">
+  <div id="controls">
+    <fieldset>
+      <legend>Building Blocks</legend>
       <button id="barrierToggle">🔴 Add Barriers: OFF</button>
       <button id="repolarToggle">🟫 Add Slow-Repolarization: OFF</button>
       <button id="slowConductionToggle">🟩 Add Slow-Conduction: OFF</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Pacemaker</legend>
       <button id="pacemakerToggle">💙 Add Pacemakers: OFF</button>
       <button id="paceModeToggle">⚡ PACE Mode: OFF</button>
-      <button id="visibilityToggle">👁️ Show Only Activation Waves: OFF</button>
-      <button id="resetButton">🔄 Reset Grid</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Built-in Block Patterns</legend>
       <button id="circleBlockButton">🟠 Add Circular Block</button>
       <button id="diamondBlockButton">🔷 Add Diamond Block</button>
+    </fieldset>
 
-    </div>
-    <div id="content">
-      <canvas id="simCanvas" width="600" height="600"></canvas>
-      <div id="pacemakerList">
-        <strong>Pacemaker Cells:</strong>
-        <div id="pacemakerEntries"></div>
-      </div>
-    </div>
+    <fieldset>
+      <legend>Misc</legend>
+      <button id="selectPixelButton">📍 Select Pixel to Monitor: OFF</button>
+      <button id="visibilityToggle">👁️ Show Only Activation Waves: OFF</button>
+      <button id="resetButton">🔄 Reset Grid</button>
+    </fieldset>
   </div>
 
+  <div id="content">
+    <canvas id="simCanvas" width="600" height="600"></canvas>
+    <div id="pacemakerList">
+      <strong>Pacemaker Cells:</strong>
+      <div id="pacemakerEntries"></div>
+    </div>
+  </div>
+</div>
+
+<div style="background: white; padding: 10px; margin-top: 20px; width: fit-content; border: 1px solid #999;">
+  <div id="signalTitle" style="font-weight: bold; font-size: 1.2em; margin-bottom: 6px;">
+    Intracellular potential for the selected cell
+  </div>
+  <canvas id="signalCanvas" width="900" height="120" style="border: 1px solid #999; display: block;"></canvas>
+</div>
   <script>
     const s = document.createElement('script');
     s.src = 'x7_obf_logic.js';
